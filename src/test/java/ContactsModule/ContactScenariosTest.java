@@ -40,28 +40,7 @@ public class ContactScenariosTest extends Baseclass {
 
 
 		WebDriverUtility wutil = new WebDriverUtility();
-//		// Maximize the window
-//
-//		wutil.maximizethewindow(driver);
-//
-//		wutil.waitUntilElementFound(driver, time);
-//		// Navigate to appln
-//
-//		wutil.navigateToAnApplication(driver, url);
-//
-//		Login_POMPage login = new Login_POMPage(driver);
-//
-//		login.login(un, pw);
 
-//			//Identify un textfield and pass the username
-//			
-//			driver.findElement(By.name("user_name")).sendKeys(un);
-//			
-//			driver.findElement(By.name("user_password")).sendKeys(pw);
-//			
-//			//Identify login button
-//			
-//			driver.findElement(By.id("submitButton")).click();
 
 		// Identify organization link and click
 		
