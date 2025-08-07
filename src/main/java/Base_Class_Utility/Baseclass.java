@@ -18,6 +18,7 @@ import org.testng.annotations.BeforeTest;
 import GenericUtilities.DatabaseUtility;
 import GenericUtilities.PropertyFile_Utilities;
 import GenericUtilities.WebDriverUtility;
+import Listeners_Utility.UtilityClassObject;
 import POM_Utilities.HOME_POMPage;
 import POM_Utilities.Login_POMPage;
 
@@ -53,15 +54,20 @@ public class Baseclass  {
 			driver = new ChromeDriver();
 		}
 		sdriver=driver;
+		UtilityClassObject.setDriver(driver);
 
 	}
 
 	@BeforeMethod
 	public void login() throws Exception {
-
-		String url = prop.FetchingDataFromPropertyFile("Url");
-		String un = prop.FetchingDataFromPropertyFile("Username");
-		String pw = prop.FetchingDataFromPropertyFile("Password");
+//
+//		String url = prop.FetchingDataFromPropertyFile("Url");
+//		String un = prop.FetchingDataFromPropertyFile("Username");
+//		String pw = prop.FetchingDataFromPropertyFile("Password");
+		
+		String url = System.getProperty("Url",prop.FetchingDataFromPropertyFile("Url"));
+		String un = System.getProperty("Username",prop.FetchingDataFromPropertyFile("Username"));
+		String pw = System.getProperty("Password",prop.FetchingDataFromPropertyFile("Password"));
 		String timeouts = prop.FetchingDataFromPropertyFile("Timeouts");
 
 		wutil.maximizethewindow(driver);

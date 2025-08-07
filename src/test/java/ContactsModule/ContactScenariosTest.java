@@ -11,6 +11,7 @@ import Base_Class_Utility.Baseclass;
 import GenericUtilities.ExcelUtilities;
 import GenericUtilities.JavaUtility;
 import GenericUtilities.WebDriverUtility;
+import Listeners_Utility.UtilityClassObject;
 import POM_Utilities.Cont_Info_POMPage;
 import POM_Utilities.Cont_POMPAge;
 import POM_Utilities.CreateNewContPOM;
@@ -19,7 +20,7 @@ import POM_Utilities.HOME_POMPage;
 import POM_Utilities.OrgInfoPOMPage;
 import POM_Utilities.Org_POMPage;
 
-@Listeners(Listners_Utilities.Listeners.class)
+@Listeners(Listeners_Utility.Listeners.class)
 public class ContactScenariosTest extends Baseclass {
 	
 	@Test(groups="reg" )
@@ -30,13 +31,13 @@ public class ContactScenariosTest extends Baseclass {
 	
 		JavaUtility jutil = new JavaUtility();
 		int randonNum = jutil.Randomnum();
-		Listners_Utilities.Listeners.test.log(Status.INFO,"Fetch random number");
+		UtilityClassObject.getTest().log(Status.INFO,"Fetch random number");
 
 		// Fetch data from Excel
 		ExcelUtilities ex=new ExcelUtilities();
 		String contactname =ex.FetchDataFromExcelFile("Cont_Data", 8, 3)+randonNum;
 		String orgname =ex.FetchDataFromExcelFile("Cont_Data", 8, 2)+randonNum;
-		Listners_Utilities.Listeners.test.log(Status.INFO,"Fetch data from excel");
+		UtilityClassObject.getTest().log(Status.INFO,"Fetch data from excel");
 
 
 		WebDriverUtility wutil = new WebDriverUtility();
@@ -44,13 +45,13 @@ public class ContactScenariosTest extends Baseclass {
 
 		// Identify organization link and click
 		
-//			driver.findElement(By.linkText("Organizations")).click();
+		// driver.findElement(By.linkText("Organizations")).click();
 		
 		HOME_POMPage home = new HOME_POMPage(driver);
-		Listners_Utilities.Listeners.test.log(Status.INFO,"Navigate to home page");
+		UtilityClassObject.getTest().log(Status.INFO,"Navigate to home page");
 		
 		home.getOrg_tab();
-		Listners_Utilities.Listeners.test.log(Status.INFO,"Click on Organization link");
+		UtilityClassObject.getTest().log(Status.INFO,"Click on Organization link");
 
 		new SoftAssert();
 		
@@ -62,7 +63,7 @@ public class ContactScenariosTest extends Baseclass {
 		//driver.findElement(By.xpath("//img[@title=\"Create Organization...\"]")).click();
 
 		OPOM.getOrg_PlusIcon();
-		Listners_Utilities.Listeners.test.log(Status.INFO,"Click on Create Contact Plus Icon ");
+		UtilityClassObject.getTest().log(Status.INFO,"Click on Create Contact Plus Icon ");
 		
 		// click on org name textfield enter data
 		
@@ -70,7 +71,7 @@ public class ContactScenariosTest extends Baseclass {
 
 		neworg.getOrgnameTF(orgname);
 		
-		Listners_Utilities.Listeners.test.log(Status.INFO,"click on org name textfield enter data");
+		UtilityClassObject.getTest().log(Status.INFO,"click on org name textfield enter data");
 
 		//driver.findElement(By.name("accountname")).sendKeys(orgname);
 
@@ -81,7 +82,7 @@ public class ContactScenariosTest extends Baseclass {
 		//driver.findElement(By.xpath("//input[@title=\"Save [Alt+S]\"]")).click();
 
 		neworg.getSavebtn();
-		Listners_Utilities.Listeners.test.log(Status.INFO,"click on Save button");
+		UtilityClassObject.getTest().log(Status.INFO,"click on Save button");
 		
 
 		// identify header in org info page and validate
@@ -91,7 +92,7 @@ public class ContactScenariosTest extends Baseclass {
 		String actualOrgname_orginfo = orginfo.getVerifyOrgnameTF();
 		System.out.println(actualOrgname_orginfo+orgname);
 		
-		Listners_Utilities.Listeners.test.log(Status.PASS,"Validate header on org info page");
+		UtilityClassObject.getTest().log(Status.PASS,"Validate header on org info page");
 
 //		Assert.assertEquals(actualOrgname_orginfo, " "+orgname);
 		System.out.println(actualOrgname_orginfo+orgname);
@@ -109,7 +110,7 @@ public class ContactScenariosTest extends Baseclass {
 
 		//driver.findElement(By.linkText("Contacts")).click();
 		home.getCont_tab();
-		Listners_Utilities.Listeners.test.log(Status.INFO,"click on Contacts link");
+		UtilityClassObject.getTest().log(Status.INFO,"click on Contacts link");
 		
 
 		// Identify create plus icon n click
@@ -119,7 +120,7 @@ public class ContactScenariosTest extends Baseclass {
 		Cont_POMPAge cont = new Cont_POMPAge(driver);
 
 		cont.getContPlusIcon();
-		Listners_Utilities.Listeners.test.log(Status.INFO,"click on Plus icon on contacs page");
+		UtilityClassObject.getTest().log(Status.INFO,"click on Plus icon on contacs page");
 
 		// Identify contactname tf and enter contact name
 
@@ -128,10 +129,10 @@ public class ContactScenariosTest extends Baseclass {
 		CreateNewContPOM newcont = new CreateNewContPOM(driver);
 		newcont.getLastnameTF(contactname);
 		
-		Listners_Utilities.Listeners.test.log(Status.INFO,"Identify contactname tf and enter contact name");
+		UtilityClassObject.getTest().log(Status.INFO,"Identify contactname tf and enter contact name");
 
 		newcont.getOrgPlusICon();
-		Listners_Utilities.Listeners.test.log(Status.INFO,"Click on OrgTF Plus Icon ");
+		UtilityClassObject.getTest().log(Status.INFO,"Click on OrgTF Plus Icon ");
 
 		// Fetch parent window id
 
@@ -158,7 +159,7 @@ public class ContactScenariosTest extends Baseclass {
 
 		wutil.switchToParentwindow(driver, pwid);
 		
-		Listners_Utilities.Listeners.test.log(Status.INFO,"Windowhandles");
+		UtilityClassObject.getTest().log(Status.INFO,"Windowhandles");
 
 //		driver.switchTo().window(pwid);
 
@@ -167,7 +168,7 @@ public class ContactScenariosTest extends Baseclass {
 //		driver.findElement(By.xpath("//input[@title=\"Save [Alt+S]\"]")).click();
 
 		newcont.getSavebtn();
-		Listners_Utilities.Listeners.test.log(Status.INFO,"Click on Save Button ");
+		UtilityClassObject.getTest().log(Status.INFO,"Click on Save Button ");
 
 		// identify header in contact info page and validateQ3
 
@@ -177,7 +178,7 @@ public class ContactScenariosTest extends Baseclass {
 		String actuallastname = coninfo.getVerifylastnameTF();
 		System.out.println(actuallastname+contactname);
 		
-		Listners_Utilities.Listeners.test.log(Status.INFO,"Validate header in contact info page ");
+		UtilityClassObject.getTest().log(Status.INFO,"Validate header in contact info page ");
 //		Assert.assertEquals(actuallastname, contactname);
 //		if (actuallastname.contains(contactname)) {
 //			System.out.println("create Contact with org verified last name test pass");
@@ -195,7 +196,7 @@ public class ContactScenariosTest extends Baseclass {
 		String actualorgname = coninfo.getVerifyOrgnameTF();
 		System.out.println(actualorgname+orgname);
 		
-		Listners_Utilities.Listeners.test.log(Status.INFO,"Validate Org name in contact info page ");
+		UtilityClassObject.getTest().log(Status.INFO,"Validate Org name in contact info page ");
 //		Assert.assertEquals(actualorgname, orgname);
 
 //		if (actualorgname.contains(orgname)) {
@@ -211,27 +212,27 @@ public class ContactScenariosTest extends Baseclass {
 
 //				driver.findElement(By.linkText("Contacts")).click();
 		home.getCont_tab();
-		Listners_Utilities.Listeners.test.log(Status.INFO,"Click on contacts link ");
+		UtilityClassObject.getTest().log(Status.INFO,"Click on contacts link ");
 
 		// identify and click on del link
 
 		driver.findElement(By.xpath(
 				"//a[text()='"+contactname+"']/ancestor::tr[@bgcolor=\"white\"]/descendant::a[text()='del']"))
 				.click();
-		Listners_Utilities.Listeners.test.log(Status.INFO,"Click on delete link ");
+		UtilityClassObject.getTest().log(Status.INFO,"Click on delete link ");
 
 		Thread.sleep(3000);
 		// Handle delete pop up
 
 		wutil.HandleAlertpopupAndClickOK(driver);
 		
-		Listners_Utilities.Listeners.test.log(Status.INFO,"Handle Alert pop up");
+		UtilityClassObject.getTest().log(Status.INFO,"Handle Alert pop up");
 
 		Thread.sleep(3000);
 		// Identify organization link and click
 
 //			driver.findElement(By.linkText("Organizations")).click();
-		Listners_Utilities.Listeners.test.log(Status.INFO,"Click on Organization link ");
+		UtilityClassObject.getTest().log(Status.INFO,"Click on Organization link ");
 		home.getOrg_tab();
 
 		// identify and click on del link
@@ -244,14 +245,14 @@ public class ContactScenariosTest extends Baseclass {
 				By.xpath("//a[text()='" + orgname + "']/ancestor::tr[@bgcolor=\"white\"]/descendant::a[text()='del']"))
 				.click();
 		
-		Listners_Utilities.Listeners.test.log(Status.INFO,"Click on delete link ");
+		UtilityClassObject.getTest().log(Status.INFO,"Click on delete link ");
 
 		Thread.sleep(3000);
 
 		// Handle delete pop up
 
 		wutil.HandleAlertpopupAndClickOK(driver);
-		Listners_Utilities.Listeners.test.log(Status.INFO,"Handle Alert pop up");
+		UtilityClassObject.getTest().log(Status.INFO,"Handle Alert pop up");
 
 		Thread.sleep(3000);
 //		// Mousehover on admin and signout
@@ -269,7 +270,7 @@ public class ContactScenariosTest extends Baseclass {
 //		wutil.quitTheBrowser(driver);
 //		soft.assertAll();
 		
-		Listners_Utilities.Listeners.test.log(Status.INFO,"Mousehover on admin and signout");
+		UtilityClassObject.getTest().log(Status.INFO,"Mousehover on admin and signout");
 
 
 	}

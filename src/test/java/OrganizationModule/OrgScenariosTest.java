@@ -181,7 +181,7 @@ public class OrgScenariosTest extends Baseclass {
 	
 	@Test(groups="reg" , retryAnalyzer = Listeners_Utility.IRetryAnalyser.class)
 
-	public void CreateOrg_IndType() throws Exception {
+	public void CreateOrg_IndTypeTest() throws Exception {
 
 		// Fetch data from Properties File
 
